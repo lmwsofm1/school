@@ -2,45 +2,47 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>用户登录</title>
+    <title>登录页面</title>
 </head>
 <body>
-<h2>用户登录</h2>
-<form id="loginForm">
-    <label for="userName">用户名：</label><br>
-    <input type="text" id="userName" name="userName" required><br>
-    <label for="passWord">密码：</label><br>
-    <input type="password" id="passWord" name="passWord" required><br><br>
-    <button type="submit">登录</button>
+
+
+<h2>Login</h2>
+<form action="/loginForm" method="post">
+    <div>
+        <label for="username">Username:</label>
+        <input type="text" id="userName" name="userName">
+    </div>
+    <div>
+        <label for="password">Password:</label>
+        <input type="password" id="passWord" name="passWord">
+    </div>
+    <button type="submit">Login</button>
 </form>
-
-<div id="message"></div>
-
 <script>
-    document.getElementById('loginForm').addEventListener('submit', function(event) {
-        event.preventDefault();
+    document.getElementById("loginForm").addEventListener("submit", function(event) {
+        event.preventDefault(); // 阻止表单默认提交行为
 
-        var formData = {
-            userName: document.getElementById('userName').value,
-            passWord: document.getElementById('passWord').value
-        };
+        var formData = new FormData(this); // 构建表单数据
 
         fetch('/login', {
             method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(formData)
+            body: formData
         })
-            .then(response => response.text())
-            .then(data => {
-                document.getElementById('message').textContent = data;
+            .then(response => {
+                if (response.ok) {
+                    // 登录成功，跳转到其他页面或者执行其他操作
+                    window.location.href = '/home';
+                } else {
+                    // 登录失败，显示错误消息或者执行其他操作
+                    console.error('Login failed');
+                }
             })
             .catch(error => {
-                console.error('错误:', error);
+                console.error('Error:', error);
             });
     });
 </script>
+
 </body>
 </html>
