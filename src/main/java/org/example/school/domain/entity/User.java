@@ -41,12 +41,4 @@ public class User {
     private LocalDateTime createTime;
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime updateTime;
-
-    public String getpassWord() {
-        return passWord;
-    }
-
-    public String getuserName() {
-        return userName;
-    }
 }

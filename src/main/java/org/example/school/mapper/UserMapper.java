@@ -1,9 +1,7 @@
 package org.example.school.mapper;
 
 import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Param;
 import org.example.school.domain.entity.User;
-import org.springframework.web.bind.annotation.RequestParam;
 
 
 import java.util.List;
@@ -20,7 +18,5 @@ import java.util.List;
 public interface UserMapper {
 
     List<User> list();
-
-    User findByUserNameAndPassword(String userName, String passWord);
 
 }

@@ -1,6 +1,5 @@
 package org.example.school.service;
 
-import org.apache.ibatis.annotations.Param;
 import org.example.school.domain.entity.User;
 
 import java.util.List;
