@@ -7,9 +7,6 @@
             SELECT UserId, username, nick, email,  createTime,  updateTime FROM sys_user
         </select>
         <!--登录-->
-    <select id="findByUserNameAndPassWord" resultMap="UserResultMap">
-        SELECT * FROM users WHERE username = #{userName} AND password = #{passWord}
-    </select>
 
 
 </mapper>

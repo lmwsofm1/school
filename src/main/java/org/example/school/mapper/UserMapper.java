@@ -20,7 +20,4 @@ public interface UserMapper {
 
     List<User> list();
 
-
-    User findByUserNameAndPassWord(@Param("userName") String userName, @Param("passWord") String passWord);
-
 }

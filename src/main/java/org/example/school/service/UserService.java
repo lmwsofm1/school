@@ -18,7 +18,4 @@ import java.util.List;
     List<User>list();
 
 
-    User login(String userName, String passWord);
-
-
 }
