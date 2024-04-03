@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>用户登录</title>
+</head>
+<body>
+<h2>用户登录</h2>
+<form id="loginForm">
+    <label for="userName">用户名：</label><br>
+    <input type="text" id="userName" name="userName" required><br>
+    <label for="passWord">密码：</label><br>
+    <input type="password" id="passWord" name="passWord" required><br><br>
+    <button type="submit">登录</button>
+</form>
+
+<div id="message"></div>
+
+<script>
+    document.getElementById('loginForm').addEventListener('submit', function(event) {
+        event.preventDefault();
+
+        var formData = {
+            userName: document.getElementById('userName').value,
+            passWord: document.getElementById('passWord').value
+        };
+
+        fetch('/login', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(formData)
+        })
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('message').textContent = data;
+            })
+            .catch(error => {
+                console.error('错误:', error);
+            });
+    });
+</script>
+</body>
+</html>
