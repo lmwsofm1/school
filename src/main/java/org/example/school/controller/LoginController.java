@@ -1,6 +1,10 @@
 package org.example.school.controller;
 
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import org.example.school.common.exception.MyBlogException;
+import org.example.school.common.lang.Result;
 import org.example.school.domain.entity.UserLoginDTO;
 import org.example.school.service.LoginService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,9 +19,14 @@ public class LoginController{
     @Autowired
     LoginService loginService;
     @RequestMapping("/login")
-     public String login(@RequestBody(required = false) UserLoginDTO userLoginDTO) {
+    public Result login(@RequestBody UserLoginDTO userLoginDTO)  {
+        boolean loginSuccess = loginService.loginUser(userLoginDTO);
 
-        return loginService.loginUser(userLoginDTO);
-
+        if (loginSuccess) {
+            return Result.success("登录成功");
+        } else {
+            return Result.failure("用户名或密码错误");
+        }
     }
+
 }

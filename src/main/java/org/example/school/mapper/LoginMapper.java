@@ -5,5 +5,5 @@ import org.example.school.domain.entity.UserLoginDTO;
 
 @Mapper
 public interface LoginMapper {
-    UserLoginDTO selectUserByUsernameAndPassword(String username, String password);
+    UserLoginDTO selectUserByUsernameAndPassword(String username,String password);
 }

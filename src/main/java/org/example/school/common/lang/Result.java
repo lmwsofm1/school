@@ -40,12 +40,29 @@ public class Result {
         return common(code, "操作失败", data);
     }
 
+
+    // 静态方法，返回一个失败的结果对象
+    public static Result failure(String message) {
+        return common(500, "账号密码错误", null);
+    }
+
+
+
     public static Result common(Integer code, String msg, Object data) {
         Result result = new Result();
         result.setCode(code);
         result.setMsg(msg);
         result.setData(data);
         return result;
+    }
+
+    // 静态方法，返回一个失败的结果对象
+    public static Result failure(Integer code, String msg, Object data) {
+        Result result = new Result();
+        result.setCode(code);
+        result.setMsg(msg);
+        result.setData(data);
+        return  result;
     }
 }
 

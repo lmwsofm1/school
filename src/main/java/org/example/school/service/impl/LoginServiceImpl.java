@@ -9,9 +9,19 @@ import org.springframework.stereotype.Service;
 @Service
 public class LoginServiceImpl implements LoginService {
     @Autowired
-    private LoginMapper userMapper;
+     LoginMapper loginMapper;
+
+
     @Override
-    public String loginUser(UserLoginDTO userLoginDTO) {
-        return null;
+    public boolean loginUser(UserLoginDTO userLoginDTO) {
+
+        String userName = userLoginDTO.getUserName();
+        String passWord = userLoginDTO.getPassWord();
+
+        // 进行登录验证逻辑
+        UserLoginDTO dto = loginMapper.selectUserByUsernameAndPassword(userName, passWord);
+
+        return dto.getUserName().equals(userName) && dto.getPassWord().equals(passWord);
     }
+
 }
