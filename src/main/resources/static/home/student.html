@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="../jpg/favicon.ico">
+    <title>班级列表</title>
+    <!-- 引入 Element UI 样式 -->
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+    <!-- 引入 Vue.js 和 Element UI 组件库 -->
+    <script src="https://unpkg.com/vue@2.6.14/dist/vue.min.js"></script>
+    <script src="https://unpkg.com/element-ui/lib/index.js"></script>
+</head>
+<body>
+<div id="class">
+    <el-container>
+        <el-header>
+            <h1 style="text-align: center;">班级列表</h1>
+        </el-header>
+        <el-main>
+            <el-table :data="classList" style="width: 100%">
+                <el-table-column prop="classId" label="班级ID"></el-table-column>
+                <el-table-column prop="className" label="班级名称"></el-table-column>
+            </el-table>
+        </el-main>
+    </el-container>
+</div>
+
+<!-- 引入 axios 用于发送请求 -->
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script>
+
+    new Vue({
+        el: '#class',
+        data() {
+            return {
+                classList: []
+            };
+        },
+        mounted() {
+            this.fetchClassList();
+        },
+        methods: {
+            fetchClassList() {
+                axios.get('/class/classlist')
+                    .then(response => {
+                        this.classList = response.data.data;
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                        this.$message.error('获取班级列表失败，请重试！');
+                    });
+            }
+        }
+    });
+
+</script>
+</body>
+</html>

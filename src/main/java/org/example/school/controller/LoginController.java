@@ -1,9 +1,7 @@
 package org.example.school.controller;
 
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import org.example.school.common.exception.MyBlogException;
+
 import org.example.school.common.lang.Result;
 import org.example.school.domain.entity.UserLoginDTO;
 import org.example.school.service.LoginService;

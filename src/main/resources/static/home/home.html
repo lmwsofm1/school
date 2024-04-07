@@ -2,10 +2,114 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/x-icon" href="../jpg/favicon.ico">
+    <!-- 引入 Element UI 样式 -->
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+    <script src="https://cdn.jsdelivr.net/npm/vuex@3.6.2/dist/vuex.min.js"></script>
+    <!-- 引入 Vue.js 和 Element UI 组件库 -->
+    <script src="https://unpkg.com/vue@2.6.14/dist/vue.min.js"></script>
+    <script src="https://unpkg.com/element-ui/lib/index.js"></script>
+    <title>校园管理系统</title>
+    <style>
+        /* 样式可以根据需求进行修改 */
+        .sidebar {
+            height: 100%;
+            width: 200px; /* 定义菜单栏的宽度 */
+            position: fixed;
+            top: 0;
+            left: 0;
+            background-color: #f4f4f4;
+            padding-top: 20px;
+        }
+
+        .sidebar a {
+            padding: 20px;
+            text-decoration: none;
+            display: block;
+            color: #333;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .sidebar a:hover {
+            background-color: #ddd;
+        }
+
+        .content {
+            margin-left: 220px; /* 保留足够的空间显示菜单栏 */
+            padding: 20px;
+        }
+        .main-content{
+            right: 100%;
+            width: 100%;
+            height: 100%;
+            overflow-y: auto;
+        }
+    </style>
 </head>
 <body>
-123321
+
+<div class="sidebar">
+    <a href="#first">首页</a>
+    <a href="#student">学生管理</a>
+    <a href="#teacher">教师管理</a>
+    <a href="#course">课程管理</a>
+    <a href="#class">班级管理</a>
+    <a href="#score">成绩管理</a>
+    <a href="#teaching-plan">教学计划管理</a>
+    <a href="#exam">考试管理</a>
+    <a href="#dormitory">宿舍管理</a>
+    <a href="#library">图书管理</a>
+    <a href="#activity">校园活动管理</a>
+</div>
+
+<!-- 主内容区域 -->
+<div class="main-content" id="mainContent">
+    <!-- 这里将显示 classlist.html 的内容 -->
+</div>
+
+<!-- 引入 axios 用于发送请求 -->
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script>
+    // 监听侧边栏链接的点击事件
+    document.querySelectorAll('.sidebar a').forEach(function(link) {
+        link.addEventListener('click', function(event) {
+            event.preventDefault(); // 阻止默认点击行为
+
+            // 获取点击的链接的 href 属性值
+            var href = this.getAttribute('href');
+            // 如果点击的链接为 #class，则加载 classlist.html 的内容
+            if (href === '#class') {
+                // 加载 classlist.html 的内容
+                function loadClassList() {
+                    fetch('./classList.html') // 加载 classList.html 文件
+                        .then(response => response.text()) // 解析响应为文本
+                        .then(html => {
+                            document.getElementById('mainContent').innerHTML = html; // 将加载的 HTML 内容替换当前页面的内容
+                        })
+                        .catch(error => {
+                            console.error('Error:', error);
+                        });
+                }
+                loadClassList();
+            }else if (href === '#student'){
+                function loadStudentList() {
+                    fetch('./student.html') // 加载 classList.html 文件
+                        .then(response => response.text()) // 解析响应为文本
+                        .then(html => {
+                            document.getElementById('mainContent').innerHTML = html; // 将加载的 HTML 内容替换当前页面的内容
+                        })
+                        .catch(error => {
+                            console.error('Error:', error);
+                        });
+                }
+                loadStudentList();
+            }
+            // 在这里可以根据其他链接的 href 属性值加载其他页面的内容
+            // 添加相应的条件语句即可
+        });
+    });
+
+</script>
 </body>
 </html>

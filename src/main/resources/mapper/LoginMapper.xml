@@ -3,10 +3,6 @@
 <mapper namespace="org.example.school.mapper.LoginMapper">
 
 
-
-
-
-
     <!-- Select user by username and password -->
     <select id="selectUserByUsernameAndPassword" resultType="org.example.school.domain.entity.UserLoginDTO">
         SELECT * FROM sys_user

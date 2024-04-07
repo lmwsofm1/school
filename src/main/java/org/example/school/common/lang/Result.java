@@ -1,6 +1,5 @@
 package org.example.school.common.lang;
 
-import jdk.dynalink.beans.StaticClass;
 import lombok.Data;
 
 @Data
